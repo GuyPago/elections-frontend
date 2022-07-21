@@ -1,0 +1,13 @@
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: rgba(27, 66, 240, 0.2);
+  text-align: center;
+  height: 35rem;
+  max-width: 85%;
+  justify-self: center;
+  margin: auto;
+}

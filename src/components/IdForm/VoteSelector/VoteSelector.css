@@ -1,0 +1,8 @@
+.vote-selector--select {
+  background-color: rgba(27, 66, 240, 0.05);
+  color: #40005d;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1rem;
+  margin-left: 8%;
+}

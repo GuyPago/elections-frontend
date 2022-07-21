@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Navbar } from "./components/Navbar/Navbar";
+import { Copyrights } from "./components/Copyrights/Copyrights";
+import { DEV_NAME, pagesUrl } from "./config/appsettings";
+import { VotePage } from "./pages/VotePage/VotePage";
+import { ResultsPage } from "./pages/ResultsPage/ResultsPage";
+import { InfoPage } from "./pages/InfoPage/InfoPage";
+import { AboutPage } from "./pages/AboutPage/AboutPage";
+import { ErrorPage } from "./pages/ErrorPage/ErrorPage";
 
-function App() {
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Navbar />
+      <Routes>
+        <Route path={pagesUrl.login} element={<VotePage />}></Route>
+        <Route path={pagesUrl.results} element={<ResultsPage />}></Route>
+        <Route path={pagesUrl.info} element={<InfoPage />}></Route>
+        <Route path={pagesUrl.about} element={<AboutPage />}></Route>
+        <Route path={pagesUrl.error} element={<ErrorPage />}></Route>
+      </Routes>
+      <Copyrights devName={DEV_NAME} />
     </div>
   );
-}
+};
 
 export default App;

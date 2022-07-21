@@ -1,0 +1,10 @@
+.results-page {
+  margin: 3%;
+}
+
+.results-page--header {
+  text-align: center;
+  color: #40005d;
+  font-weight: 350;
+  text-shadow: 2px 2px rgba(27, 66, 240, 0.4);
+}

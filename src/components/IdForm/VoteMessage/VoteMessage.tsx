@@ -43,7 +43,6 @@ export const VoteMessage: FC<VoterProps> = (props) => {
     component = messageCompGen(msg.ALREADY_VOTED_MSG);
   } else if (props.hasVoted === HasVotedResult.Unknown) {
     component = messageCompGen(msg.DB_ERROR_MSG);
-    console.log("gege");
   } else {
     component = messageCompGen(msg.ACCEPT_ID_MSG, TextColor.Green);
   }

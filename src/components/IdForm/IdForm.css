@@ -1,0 +1,70 @@
+.id-form {
+  background-color: rgba(27, 66, 240, 0.4);
+  padding: 1rem;
+  margin: 2rem auto;
+  text-align: center;
+  width: 35rem;
+  max-width: 85%;
+  border-radius: 12px;
+}
+
+.id-form--controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.id-form--controls > label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.id-form--controls > input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  text-align: center;
+}
+
+.id-form--buttons {
+  display: flex;
+}
+
+.id-form--buttons > button {
+  text-align: center;
+  cursor: pointer;
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border: 1px solid #40005d;
+  background-color: #40005d;
+  color: white;
+  border-radius: 12px;
+}
+
+.id-form--buttons > button:hover,
+.id-form--buttons > button:hover:active {
+  background-color: #510674;
+  border-color: #510674;
+}
+
+.id-form--buttons > button:disabled {
+  background-color: rgb(145, 142, 142, 0.5);
+  color: #510674;
+  cursor: auto;
+}
+
+.id-form--voted-warn {
+  color: rgb(187, 2, 2);
+  margin: auto;
+}
+
+.id-form--voted-accept {
+  color: green;
+  margin: auto;
+}

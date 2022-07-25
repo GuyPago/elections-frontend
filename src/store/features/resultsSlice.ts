@@ -4,10 +4,12 @@ import VoteStat from "../../models/electionModels/VoteStat";
 
 interface partyStats {
   stats: VoteStat[];
+  selectedParty: string;
 }
 
 const initialState: partyStats = {
   stats: [],
+  selectedParty: "",
 };
 
 const resultsSlice = createSlice({
@@ -22,8 +24,12 @@ const resultsSlice = createSlice({
       const existingParty = state.stats.find((x) => x._id === votedParty);
       existingParty!.count++;
     },
+    updateSelectedParty: (state, action: PayloadAction<string>) => {
+      state.selectedParty = action.payload;
+    },
   },
 });
 
-export const { overridePartyStats, incrementPartyFromVote } = resultsSlice.actions;
+export const { overridePartyStats, incrementPartyFromVote, updateSelectedParty } =
+  resultsSlice.actions;
 export default resultsSlice.reducer;

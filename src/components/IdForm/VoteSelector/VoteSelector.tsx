@@ -1,6 +1,5 @@
 import "./VoteSelector.css";
 import { ChangeEvent, FC, useState } from "react";
-import Party from "../../../models/electionModels/Party";
 import { useNavigate } from "react-router-dom";
 import Vote from "../../../models/electionModels/Vote";
 import { postVote } from "../../../services/electionsApi/electionsPostService";
@@ -8,13 +7,17 @@ import { pagesUrl } from "../../../config/appsettings";
 import { DbError } from "../../../exceptions/electionsApiExceptions";
 import { CONFIRM_MODAL_TITLE, DEFAULT_PARTY_OPTION } from "../IdFormConsts";
 import { ConfirmModal } from "../../Modal/ConfirmModal/ConfirmModal";
+import { useDispatch } from "react-redux";
+import { IAppDispatch } from "../../../store/store";
+import { incrementPartyFromVote } from "../../../store/features/resultsSlice";
 
 interface VoteOptionsProps {
-  parties: Party[];
+  partyNames: string[];
   voterId: string;
 }
 
 export const VoteSelector: FC<VoteOptionsProps> = (props) => {
+  const dispatch: IAppDispatch = useDispatch();
   const navigate = useNavigate();
   const [selectedParty, setSelectedParty] = useState<string>("");
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
@@ -25,6 +28,7 @@ export const VoteSelector: FC<VoteOptionsProps> = (props) => {
     const newVote: Vote = { _id: props.voterId, voteValue: selectedParty };
     try {
       await postVote(newVote);
+      dispatch(incrementPartyFromVote(newVote));
       navigate(pagesUrl.results, { state: selectedParty });
     } catch (err) {
       if (err instanceof DbError) {
@@ -33,9 +37,9 @@ export const VoteSelector: FC<VoteOptionsProps> = (props) => {
     }
   };
 
-  const partyInputOptions: JSX.Element[] = props.parties.map((party) => (
-    <option key={party._id} value={party.partyName}>
-      {party.partyName}
+  const partyInputOptions: JSX.Element[] = props.partyNames.map((party, index) => (
+    <option key={index} value={party}>
+      {party}
     </option>
   ));
 

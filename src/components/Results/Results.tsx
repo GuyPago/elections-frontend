@@ -1,24 +1,12 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { IRootState } from "../../store/store";
 import "./Results.css";
 import { ResultsBar } from "./ResultsBar/ResultsBar";
 
 export const Results: FC = () => {
-  let selectedParty: string;
-  const pageState = useLocation();
-
-  const { stats } = useSelector((state: IRootState) => state.partyStats);
+  const { stats, selectedParty } = useSelector((state: IRootState) => state.partyStats);
   const voteStatsData = [...stats];
-
-  try {
-    selectedParty = pageState.state as string;
-  } catch (err) {
-    if (err instanceof TypeError) {
-      selectedParty = "";
-    }
-  }
 
   const maxVoteCount: number = Math.max(...voteStatsData.map((party) => party.count));
   const voteStatsElements: JSX.Element[] = voteStatsData

@@ -9,7 +9,7 @@ import { CONFIRM_MODAL_TITLE, DEFAULT_PARTY_OPTION } from "../IdFormConsts";
 import { ConfirmModal } from "../../Modal/ConfirmModal/ConfirmModal";
 import { useDispatch } from "react-redux";
 import { IAppDispatch } from "../../../store/store";
-import { incrementPartyFromVote } from "../../../store/features/resultsSlice";
+import { incrementPartyFromVote, updateSelectedParty } from "../../../store/features/resultsSlice";
 
 interface VoteOptionsProps {
   partyNames: string[];
@@ -29,7 +29,8 @@ export const VoteSelector: FC<VoteOptionsProps> = (props) => {
     try {
       await postVote(newVote);
       dispatch(incrementPartyFromVote(newVote));
-      navigate(pagesUrl.results, { state: selectedParty });
+      dispatch(updateSelectedParty(newVote.voteValue));
+      navigate(pagesUrl.results);
     } catch (err) {
       if (err instanceof DbError) {
         navigate(pagesUrl.error);

@@ -5,7 +5,7 @@ import { pagesUrl } from "../../config/appsettings";
 import HasVotedResult from "../../enums/HasVotedResult";
 import Party from "../../models/electionModels/Party";
 import VoterDTO from "../../models/electionModels/VoterDTO";
-import { getParties } from "../../services/electionsApi/electionsFetchService copy";
+import { getParties } from "../../services/electionsApi/electionsFetchService";
 import { hasAllreadyVoted, isValidIsraeliId } from "../../services/IdValidationService";
 import { VOTE_INIT_VALUE } from "./IdFormConsts";
 import { VoteMessage } from "./VoteMessage/VoteMessage";

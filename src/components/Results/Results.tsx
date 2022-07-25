@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import VoteStat from "../../models/electionModels/VoteStat";
-import { getVoteStats } from "../../services/electionsApi/electionsFetchService copy";
+import { getVoteStats } from "../../services/electionsApi/electionsFetchService";
 import "./Results.css";
 import { ResultsBar } from "./ResultsBar/ResultsBar";
 

@@ -1,29 +1,12 @@
-import { FC, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import VoteStat from "../../models/electionModels/VoteStat";
-import { getVoteStats } from "../../services/electionsApi/electionsFetchService";
+import { FC } from "react";
+import { useSelector } from "react-redux";
+import { IRootState } from "../../store/store";
 import "./Results.css";
 import { ResultsBar } from "./ResultsBar/ResultsBar";
 
 export const Results: FC = () => {
-  let selectedParty: string;
-  const [voteStatsData, setVoteStatsData] = useState<VoteStat[]>([]);
-  const pageState = useLocation();
-
-  try {
-    selectedParty = pageState.state as string;
-  } catch (err) {
-    if (err instanceof TypeError) {
-      selectedParty = "";
-    }
-  }
-
-  useEffect(() => {
-    (async () => {
-      const voteStats = await getVoteStats();
-      setVoteStatsData(voteStats);
-    })();
-  });
+  const { stats, selectedParty } = useSelector((state: IRootState) => state.partyStats);
+  const voteStatsData = [...stats];
 
   const maxVoteCount: number = Math.max(...voteStatsData.map((party) => party.count));
   const voteStatsElements: JSX.Element[] = voteStatsData
